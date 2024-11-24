@@ -1,47 +1,209 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login & Signup Form</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+<body>
+    <section class="wrapper">
+        <div class="form signup">
+            <header>Signup</header>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
+                <input type="text" placeholder="Full name" id="name" name="name" :value="old('name')"
+                    required autofocus autocomplete="name" />
+                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+
+                <input type="text" placeholder="Email address" id="email" name="email" :value="old('email')"
+                    required autofocus autocomplete="email" />
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+
+
+                <input type="password" placeholder="Password" id="password" name="password" required
+                    autocomplete="new-password" />
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+
+                <input type="password" placeholder="Password" id="password_confirmation" name="password_confirmation" required
+                    autocomplete="new-password" />
+            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+
+                <input type="submit" value="Signup" />
+            </form>
         </div>
+        <div class="form login">
+            <header>Login</header>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <input type="text" placeholder="Email address" required id="email" name="email" autofocus
+                    autocomplete="username" />
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                <input type="password" placeholder="Password" id="password" name="password" required
+                    autocomplete="current-password" />
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                <input type="submit" value="Login" />
+            </form>
         </div>
+        <script>
+            const wrapper = document.querySelector(".wrapper"),
+                signupHeader = document.querySelector(".signup header"),
+                loginHeader = document.querySelector(".login header");
+            loginHeader.addEventListener("click", () => {
+                wrapper.classList.add("active");
+            });
+            signupHeader.addEventListener("click", () => {
+                wrapper.classList.remove("active");
+            });
+        </script>
+    </section>
+</body>
+<style>
+    /* Import Google font - Poppins */
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins",
+            sans-serif;
+    }
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
+    body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f0faff;
+    }
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    .wrapper {
+        position: relative;
+        max-width: 470px;
+        width: 100%;
+        border-radius: 12px;
+        padding: 20px 30px 120px;
+        background: #4070f4;
+        box-shadow: 0 5px 10px rgba(0,
+                0,
+                0,
+                0.1);
+        overflow: hidden;
+    }
+
+    .form.login {
+        position: absolute;
+        left: 50%;
+        bottom: -86%;
+        transform: translateX(-50%);
+        width: calc(100% + 220px);
+        padding: 20px 140px;
+        border-radius: 50%;
+        height: 100%;
+        background: #fff;
+        transition: all 0.6s ease;
+    }
+
+    .wrapper.active .form.login {
+        bottom: -15%;
+        border-radius: 35%;
+        box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form header {
+        font-size: 30px;
+        text-align: center;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .form.login header {
+        color: #333;
+        opacity: 0.6;
+    }
+
+    .wrapper.active .form.login header {
+        opacity: 1;
+    }
+
+    .wrapper.active .signup header {
+        opacity: 0.6;
+    }
+
+    .wrapper form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 40px;
+    }
+
+    form input {
+        height: 60px;
+        outline: none;
+        border: none;
+        padding: 0 15px;
+        font-size: 16px;
+        font-weight: 400;
+        color: #333;
+        border-radius: 8px;
+        background: #fff;
+    }
+
+    .form.login input {
+        border: 1px solid #aaa;
+    }
+
+    .form.login input:focus {
+        box-shadow: 0 1px 0 #ddd;
+    }
+
+    form .checkbox {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .checkbox input[type="checkbox"] {
+        height: 16px;
+        width: 16px;
+        accent-color: #fff;
+        cursor: pointer;
+    }
+
+    form .checkbox label {
+        cursor: pointer;
+        color: #fff;
+    }
+
+    form a {
+        color: #333;
+        text-decoration: none;
+    }
+
+    form a:hover {
+        text-decoration: underline;
+    }
+
+    form input[type="submit"] {
+        margin-top: 15px;
+        padding: none;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .form.login input[type="submit"] {
+        background: #4070f4;
+        color: #fff;
+        border: none;
+    }
+</style>
+
+</html>
