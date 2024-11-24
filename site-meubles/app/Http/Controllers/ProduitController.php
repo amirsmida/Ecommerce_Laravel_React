@@ -23,7 +23,6 @@ class ProduitController extends Controller
     public function store(Request $request)
     {
         
-
         try {
             $produit=new Produit([
             "nompro"=> $request->input('nompro'),

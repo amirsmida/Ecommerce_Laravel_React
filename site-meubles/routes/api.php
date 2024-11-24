@@ -19,4 +19,3 @@ Route::middleware('api')->group(function () {
 Route::get('/scat/{idcat}', [SousCategorieController  ::class,'showSCategorieByCAT']);
 Route::get('/listproduit/{idscat}', [ProduitController::class,'showArticlesBySCAT']);
 Route::get('/produit/art/paginate', [ProduitController::class,'produitPaginate']);
-
