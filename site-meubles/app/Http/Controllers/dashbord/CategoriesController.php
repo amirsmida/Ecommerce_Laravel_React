@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Categorie; 
 
+use App\Models\Articles;
+
 class CategoriesController extends Controller
 {
     public function index(){
@@ -47,6 +49,7 @@ class CategoriesController extends Controller
         $catg=Categorie::find($id);
         $catg->etat=$etat;
         $catg->save();
+        Articles::where('id_categorie', $id)->update(['etat' => $etat]);
         return redirect()->route('categories.index');
     }
 }

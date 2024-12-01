@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashbord\CategoriesController;
+use App\Http\Controllers\dashbord\ProduitsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,6 +16,12 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::resource('categories', CategoriesController::class);
+    Route::get('modif_etat_categorie/{id}/{etat}', [CategoriesController::class, 'archive'])->name('modif_etat_categorie');
+   Route::get('categories_archive', [CategoriesController::class, 'indexArchiv'])->name('categories_archive');
+
+    Route::resource('articles', ProduitsController::class);
+   Route::get('modif_etat_article/{id}/{etat}', [ProduitsController::class, 'archive'])->name('modif_etat_article');
+   Route::get('articles_archive', [ProduitsController::class, 'indexArchiv'])->name('articles_archive');
 });
 
 

@@ -14,4 +14,7 @@ class Categorie extends Model
     public function categoriesParnt(){
         return $this->belongsTo(Categorie::class,'id_categorie');
     }
+    public function categArticles(){
+        return $this->belongsTo(Articles::class,'id_categorie');
+    }
 }
