@@ -77,6 +77,18 @@
                 <div data-i18n="Analytics">Articles</div>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('commende.index') }}">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <span class="menu-title">Commendes</span>
+            </a>
+        </li>
+        <li class="menu-item ">
+            <a href="{{ route('client.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Clients</div>
+            </a>
+        </li>
     </ul>
 </aside>
 <!-- / Menu -->

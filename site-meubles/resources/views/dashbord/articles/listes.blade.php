@@ -41,21 +41,20 @@
                             {{ $article->prix }}
                         </td>
                         <td>
-                            <a class="btn btn-warning" type="button"
-                                            href="{{ route('articles.edit', $article->id) }}">
-                                            Modifier
-                                        </a>
+                            <a class="btn btn-warning" type="button" href="{{ route('articles.edit', $article->id) }}">
+                                Modifier
+                            </a>
                             @if ($article->etat == 0)
-                                            <a class="btn btn-danger"
-                                                href="{{ route('modif_etat_article', ['id' => $article->id, 'etat' => 1]) }}">
-                                                Archiver
-                                            </a>
-                                        @else
-                                            <a class="btn btn-success"
-                                                href="{{ route('modif_etat_article', ['id' => $article->id, 'etat' => 0]) }}">
-                                                Désarchiver
-                                            </a>
-                                        @endif
+                                <a class="btn btn-danger"
+                                    href="{{ route('modif_etat_article', ['id' => $article->id, 'etat' => 1]) }}">
+                                    Archiver
+                                </a>
+                            @else
+                                <a class="btn btn-success"
+                                    href="{{ route('modif_etat_article', ['id' => $article->id, 'etat' => 0]) }}">
+                                    Désarchiver
+                                </a>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
