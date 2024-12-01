@@ -1,18 +1,19 @@
 @include('layouts_blade.header')
-<div class="card">
-    <h1 class="h3 mb-0 text-gray-800">Articles</h1>
-        <a class="btn btn-primary" type="button" href="{{ route('articles.create') }}">
-            Ajouter
-        </a>
+<div class="card col-lg-10 offset-1 mt-5 p-4">
+
+    <div>
+        <h1 class="h3 mb-0 text-gray-800">Articles</h1>
+        <a type="button" class="btn rounded-pill btn-dark col-lg-2" href="{{ route('articles.create') }}">Ajouter</a>
         @if ($type == 0)
             <a class="btn btn-danger" type="button" href="{{ route('articles_archive') }}">
-                Articles archiver
+                <i class="menu-icon tf-icons bx bx-archive-in"></i>
             </a>
         @else
             <a class="btn btn-success" type="button" href="{{ route('articles.index') }}">
-                Articles actif
+                <i class="menu-icon tf-icons bx bx-archive-out"></i>
             </a>
         @endif
+    </div>
 
     <div class="table-responsive text-nowrap">
         <table class="table table-striped">

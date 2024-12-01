@@ -16,6 +16,13 @@ class CategoriesController extends Controller
         return view('dashbord.categories.listes',compact('categories','type'));
     }
 
+    public function indexArchiv()
+    {
+        $categories=Categorie::where('etat',1)->get();
+        $type=1;
+        return view('dashbord.categories.listes', compact('categories','type'));
+    }
+
     public function create(){
         $categories= Categorie::where('etat',0)->get();
         return view('dashbord.categories.ajouter' , compact('categories','categories'));
