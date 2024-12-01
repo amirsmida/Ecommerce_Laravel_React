@@ -9,12 +9,9 @@ class Categorie extends Model
 {
     use HasFactory;
     protected $fillable = [
-    'nom','image'
+        'nom', 'logo', 'etat','id_categorie'
     ];
-
-    // Relation : Une catégorie peut avoir plusieurs sous-catégories
-    public function sousCategories()
-    {
-        return $this->hasMany(SousCategorie::class,"categorie_id");
+    public function categoriesParnt(){
+        return $this->belongsTo(Categorie::class,'id_categorie');
     }
 }
