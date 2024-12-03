@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('adresse')->nullable();
             $table->string('telephone')->nullable();
             $table->integer('etat')->default(0);
+            $table->integer('id_user')->nullable();
             $table->timestamps();
         });
     }
